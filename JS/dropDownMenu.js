@@ -22,11 +22,6 @@ export default class DropDownButton {
     } else if (nameOfId === "ustensils") {
       this.searchElement(this.allUstensils, this.listeTag, this.nameOfId);
     }
-
-    // Log Ingredients, Appliances, ustensils
-    //console.log(this.allIngredients);
-    //console.log(this.allAppliances);
-    //console.log(this.allUstensils);
   }
 
   methodBoucle(nameOfId) {
@@ -37,7 +32,6 @@ export default class DropDownButton {
         });
       }
       if (nameOfId === "appliance") {
-        //  console.log(recipe.appliance);
         this.allAppliances.push(recipe.appliance);
       }
       if (nameOfId === "ustensils") {

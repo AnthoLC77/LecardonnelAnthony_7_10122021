@@ -81,17 +81,4 @@ export default class SearchAll {
     });
     this.name = Array.from(new Set(this.name));
   }
-  /*
-  searchBarAll() {
-    const search = document.getElementById("searchBar");
-    search.addEventListener("keyup", () => {
-      let searchValue = search.value.toLocaleLowerCase();
-      let filter = recipes.filter((recipe) => {
-        return recipe.name.toLocaleLowerCase().includes(searchValue);
-      });
-      new Recette(filter);
-      console.log(filter);
-    });
-  }
-}*/
 }

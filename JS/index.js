@@ -18,26 +18,6 @@ search.addEventListener("input", (e) => {
   console.log(e.target.value);
 });
 
-// Recherche Barre principal
-/*
-let search = document.getElementById("searchBar");
-search.addEventListener("keyup", () => {
-  let filter = recipes.filter((recipe) => {
-    return (
-      recipe.name
-        .toLocaleLowerCase()
-        .includes(search.value.toLocaleLowerCase()) ||
-      recipe.description
-        .toLocaleLowerCase()
-        .includes(search.value.toLocaleLowerCase()) ||
-      recipe.appliance
-        .toLocaleLowerCase()
-        .includes(search.value.toLocaleLowerCase())
-    );
-  });
-  new Card(filter);
-});*/
-
 // Search bar ingredients
 
 // Input search creation

@@ -2,14 +2,13 @@ import { recipes } from "./data.js";
 
 export default class Card {
   constructor(recipes) {
-    //this.recipes = recipes;
     this.container = document.querySelector(".recettes_container");
 
     // Method Call
-    this.test(this.recipes);
+    this.recoverAllRecipes(this.recipes);
   }
 
-  test() {
+  recoverAllRecipes() {
     recipes.forEach((recipe) => {
       this.createRecipesDom(recipe);
       this.metho(recipe);
@@ -61,38 +60,5 @@ export default class Card {
 
     document.querySelector(".card_liste_ingredients").innerHTML =
       ingredientInfos;
-
-    //return this.createRecipesDom(recipe, ingredientInfos);
   }
 }
-
-/*createrCardRecipes(recipe, ingredient) {
-    let recette = recipe
-      .map((items) => {
-        return `
-        <article class="recette">
-          <div class="img_grise"></div>
-          <footer class="recette_infos">
-            <div class="recette_infos_name">
-              <h2>${items.name}</h2>
-              <div class="recette_infos_timer">
-                <i class="far fa-clock"></i>
-                <h3>${items.time} min</h3>
-              </div>
-            </div>
-            <div class="recette_infos_ingredients">
-              <ul class="card_liste_ingredients">
-                ${ingredient}
-              </ul>
-              <div class="prep">${items.description}</div>
-              <ul class="liste-ustensils"></ul>
-              <p class="card_ustensils">${items.appliance} ${items.ustensils}</p>
-            </div>
-          </footer>
-        </article>`;
-      })
-      .join("");
-
-    document.querySelector(".recettes_container").innerHTML = recette;
-  }
-*/

@@ -11,12 +11,45 @@ import Card from "./card.js";
 new Card(recipes);
 
 let articlesArray = [...document.querySelectorAll(".recette")];
-console.log(articlesArray);
+
+//--------------------------------------------------------------------
 
 let search = document.getElementById("searchBar");
 search.addEventListener("input", (e) => {
-  console.log(e.target.value);
+  if (e.target.value.length >= 3) {
+    let inputValue = e.target.value;
+    const filterArticle = recipes.filter((article) => {
+      return (
+        article.name
+          .toLocaleLowerCase()
+          .includes(inputValue.toLocaleLowerCase()) ||
+        article.description
+          .toLocaleLowerCase()
+          .includes(inputValue.toLocaleLowerCase()) ||
+        article.appliance
+          .toLocaleLowerCase()
+          .includes(inputValue.toLocaleLowerCase())
+      );
+    });
+    new Card(filterArticle);
+  } else if (e.target.value <= 2) {
+    new Card(recipes);
+  }
 });
+/*
+inputName.addEventListener("keyup", (e) => {
+  if (e.target.value.length >= 3) {
+    const filterName = characters.filter((character) => {
+      return character.name
+        .toLocaleLowerCase()
+        .includes(e.target.value.toLocaleLowerCase());
+    });
+    new Personnages(filterName);
+    ErrorMessage();
+  } else if (e.target.value.length === 2) {
+    new Personnages(characters);
+  }
+});*/
 
 // Search bar ingredients
 

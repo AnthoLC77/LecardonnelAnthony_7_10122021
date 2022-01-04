@@ -58,13 +58,13 @@ export default class DropDownButton {
       parent.innerHTML = result
         .map((item) => {
           if (nameOfId === "ingredient") {
-            return `<li class="items ingredient" data-choisi="false">${item}</li>`;
+            return `<li class="items items_ingredient" data-choisi="false">${item}</li>`;
           }
           if (nameOfId === "appliance") {
-            return `<li class="items appliance" data-choisi="false">${item}</li>`;
+            return `<li class="items items_appliance" data-choisi="false">${item}</li>`;
           }
           if (nameOfId === "ustensils") {
-            return `<li class="items ustensils" data-choisi="false">${item}</li>`;
+            return `<li class="items items_ustensils" data-choisi="false">${item}</li>`;
           }
         })
         .join("");

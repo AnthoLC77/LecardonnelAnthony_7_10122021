@@ -68,12 +68,38 @@ li {
 
 /* TAG SELECTIONNER */
 
-#tags_choisi {
+#list_tags {
   display: flex;
 }
 
-.list_tag {
+.list_tag_choisi {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: white;
+  background-color: #3282f7;
   margin-right: 20px;
+  cursor: pointer;
+}
+
+.fa-times-circle {
+  font-size: 23px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.fa-times-circle:hover {
+  animation: 0.5s ease-out crossRotate;
+}
+
+@keyframes crossRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
 }
 
 /* DROP DOWN MENU */
@@ -221,8 +247,13 @@ li {
   list-style-type: none;
   white-space: nowrap;
   cursor: pointer;
+  overflow: hidden;
   text-overflow: ellipsis;
-  text-transform: capitalize;
+}
+
+.second_input li:hover {
+  overflow: initial;
+  white-space: initial;
 }
 
 /************ MAIN RECETTES *******************/
@@ -300,7 +331,7 @@ h3 {
   overflow: hidden;
 }
 
-.recette_infos_ingredients .prep {
+.recette_infos_ingredients .description {
   width: 50%;
   text-align: justify;
   text-overflow: ellipsis;

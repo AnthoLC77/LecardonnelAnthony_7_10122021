@@ -1,6 +1,5 @@
 import { recipes } from "./data.js";
 
-
 export default class SearchAll {
   constructor(liste1, liste2, liste3, listeAll) {
     this.liste1 = liste1;
@@ -38,11 +37,15 @@ export default class SearchAll {
         this.allIngredients.push(item.ingredient);
       });
     });
+
+    this.TriAlphabétique(this.allIngredients);
     this.allIngredients = Array.from(new Set(this.allIngredients));
+
+    console.log(this.allIngredients);
 
     this.liste1.innerHTML = this.allIngredients
       .map((item) => {
-        return `<li class="items ingredient" data-choisi="false">${item}</li>`;
+        return `<li class="items items_ingredient" data-choisi="false">${item}</li>`;
       })
       .join("");
   }
@@ -51,11 +54,13 @@ export default class SearchAll {
     recipes.forEach((items) => {
       this.allAppliances.push(items.appliance);
     });
-    let results = Array.from(new Set(this.allAppliances));
+    //let results = Array.from(new Set(this.allAppliances));
+    this.TriAlphabétique(this.allAppliances);
+    this.allAppliances = Array.from(new Set(this.allAppliances));
 
-    this.liste2.innerHTML = results
+    this.liste2.innerHTML = this.allAppliances //results
       .map((item) => {
-        return `<li class="items appliance" data-choisi="false">${item}</li>`;
+        return `<li class="items items_appliance" data-choisi="false">${item}</li>`;
       })
       .join("");
   }
@@ -66,11 +71,12 @@ export default class SearchAll {
         this.allUstensils.push(item);
       });
     });
+    this.TriAlphabétique(this.allUstensils);
     this.allUstensils = Array.from(new Set(this.allUstensils));
 
     this.liste3.innerHTML = this.allUstensils
       .map((item) => {
-        return `<li class="items ustensils" data-choisi="false">${item}</li>`;
+        return `<li class="items items_ustensils" data-choisi="false">${item}</li>`;
       })
       .join("");
   }
@@ -80,5 +86,11 @@ export default class SearchAll {
       this.name.push(items.name);
     });
     this.name = Array.from(new Set(this.name));
+  }
+
+  TriAlphabétique(array) {
+    array.sort(function (a, b) {
+      return a.localeCompare(b);
+    });
   }
 }

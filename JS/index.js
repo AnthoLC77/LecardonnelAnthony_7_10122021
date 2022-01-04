@@ -2,56 +2,122 @@
 import SearchAll from "./searchAll.js";
 import DropDownButton from "./dropDownMenu.js";
 import { recipes } from "./data.js";
-import Card from "./card.js";
+import RecipesCard from "./cardRecipes.js";
 
 //--------------------------------------
+displayRecipes(recipes);
 
-//--------------------------------------------
+// Search bar name, ingredients, description [PROGAMMATION FONCTIONNELLE]
 
-new Card(recipes);
+const searchInput = document.getElementById("searchBar");
+let containerRecipes = document.querySelector(".recettes_container");
 
-let articlesArray = [...document.querySelectorAll(".recette")];
+searchInput.addEventListener("input", (e) => {
+  if (e.target.value.length > 2) {
+    const resultFilter = recipes.filter((recipe) => {
+      const inputValue = e.target.value.toLocaleLowerCase();
 
-//--------------------------------------------------------------------
+      // FILTRE NAME, INGREDIENTS, DESCRIPTION
 
-let search = document.getElementById("searchBar");
-search.addEventListener("input", (e) => {
-  if (e.target.value.length >= 3) {
-    let inputValue = e.target.value;
-    const filterArticle = recipes.filter((article) => {
-      return (
-        article.name
-          .toLocaleLowerCase()
-          .includes(inputValue.toLocaleLowerCase()) ||
-        article.description
-          .toLocaleLowerCase()
-          .includes(inputValue.toLocaleLowerCase()) ||
-        article.appliance
-          .toLocaleLowerCase()
-          .includes(inputValue.toLocaleLowerCase())
-      );
+      const filterAll = recipe.ingredients.filter((ingredient) => {
+        if (ingredient.ingredient.toLocaleLowerCase().includes(inputValue)) {
+          console.log("ingredient");
+          return ingredient.ingredient
+            .toLocaleLowerCase()
+            .includes(searchInput.value.toLocaleLowerCase());
+        } else if (recipe.name.toLocaleLowerCase().includes(inputValue)) {
+          console.log("name");
+          return recipe.name.toLocaleLowerCase().includes(inputValue);
+        } else if (
+          recipe.description.toLocaleLowerCase().includes(inputValue)
+        ) {
+          console.log("descript");
+          return recipe.description.toLocaleLowerCase().includes(inputValue);
+        }
+      });
+
+      if (filterAll && filterAll.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
     });
-    new Card(filterArticle);
-  } else if (e.target.value <= 2) {
-    new Card(recipes);
+
+    containerRecipes.innerHTML = "";
+
+    displayRecipes(resultFilter);
+  } else {
+    containerRecipes.innerHTML = "";
+
+    displayRecipes(recipes);
   }
 });
-/*
-inputName.addEventListener("keyup", (e) => {
-  if (e.target.value.length >= 3) {
-    const filterName = characters.filter((character) => {
-      return character.name
-        .toLocaleLowerCase()
-        .includes(e.target.value.toLocaleLowerCase());
-    });
-    new Personnages(filterName);
-    ErrorMessage();
-  } else if (e.target.value.length === 2) {
-    new Personnages(characters);
-  }
-});*/
 
-// Search bar ingredients
+function displayRecipes(recipes) {
+  recipes.forEach((recipe) => {
+    new RecipesCard(
+      recipe,
+      recipe.name,
+      recipe.time,
+      recipe.description,
+      recipe.ingredients
+    );
+  });
+}
+
+// Search bar name, ingredients, description [BOUCLES NATIVES]
+/*
+
+const searchInput = document.getElementById("searchBar");
+let containerRecipes = document.querySelector(".recettes_container");
+
+searchInput.addEventListener("input", (e) => {
+  if (e.target.value.length > 2) {
+    const inputValueTolowerCase = e.target.value.toLocaleLowerCase();
+    let results = [];
+
+    for (let recipe of recipes) {
+      // console.log(recipe);
+
+      if (
+        recipe.name.toLocaleLowerCase().includes(inputValueTolowerCase) ||
+        recipe.description.toLocaleLowerCase().includes(inputValueTolowerCase)
+      ) {
+        results.push(recipe);
+        console.log(results);
+
+        containerRecipes.innerHTML = "";
+
+        for (let result of results) {
+          console.log(result);
+          new RecipesCard(
+            result,
+            result.name,
+            result.time,
+            result.description,
+            result.ingredients
+          );
+        }
+      }
+    }
+  } else {
+    containerRecipes.innerHTML = "";
+
+    displayRecipesDeux(recipes);
+  }
+});
+
+function displayRecipesDeux(recipes) {
+  for (let recipe of recipes) {
+    new RecipesCard(
+      recipe,
+      recipe.name,
+      recipe.time,
+      recipe.description,
+      recipe.ingredients
+    );
+  }
+}*/
 
 // Input search creation
 const inputIngredient = document.getElementById("ingrédientsSearchDeux");
@@ -145,31 +211,85 @@ closeDropDownMenuClickOutside(inputIngredientActive, inputIngredientInactive);
 closeDropDownMenuClickOutside(inputAppareilActive, inputAppareilInactive);
 closeDropDownMenuClickOutside(inputUstensileActive, inputUstensileInactive);
 
-/*
+// Search And click Tags
 
 // Liste items Click
-const listes = document.querySelectorAll(".items");
+const listesIngredients = document.querySelectorAll(".items_ingredient");
+
 //console.log(listes);
 
-listes.forEach((element) => {
+listesIngredients.forEach((element) => {
   element.addEventListener("click", listeChoisi);
 });
 
 function listeChoisi() {
   this.dataset.choisi = this.dataset.choisi == "true" ? "false" : "true";
-  returnTag();
+  displayTag();
+  triTagsIngredients();
 }
 
-function returnTag() {
+function displayTag() {
+  const crossIcone = document.getElementById("list_tags");
   const listeTrue = Array.from(
-    document.querySelectorAll(".items[data-choisi='true']")
+    document.querySelectorAll(".items_ingredient[data-choisi='true']")
   );
 
   console.log(listeTrue);
 
-  document.getElementById("tags_choisi").innerHTML = listeTrue
+  document.getElementById("list_tags").innerHTML = listeTrue
     .map((item) => {
-      return `<li class="list_tag">${item.textContent}</li>`;
+      return `
+      <div class="list_tag_choisi">
+        <li class="list_tag">${item.textContent}</li>
+        <i class="far fa-times-circle croix"></i>
+      </div>`;
     })
     .join("");
-}*/
+
+  const dop = document.querySelector(".list_tag_choisi");
+  dop.addEventListener("click", () => {
+    listeTrue.forEach((item) => {
+      item.dataset.choisi = item.dataset.choisi == "true" ? "false" : "true";
+      dop.style.display = "none";
+      displayRecipes(recipes);
+    });
+  });
+}
+
+console.log(recipes);
+
+function triTagsIngredients() {
+  let targetValue = "";
+
+  const listChoisiIngredient = Array.from(
+    document.querySelectorAll(".items_ingredient[data-choisi='true']")
+  );
+
+  // console.log(listChoisiIngredient);
+
+  listChoisiIngredient.forEach((item) => {
+    targetValue = item.textContent;
+  });
+
+  const clickResult = recipes.filter((recipe) => {
+    const result = recipe.ingredients.filter((ingredient) => {
+      if (
+        ingredient.ingredient
+          .toLocaleLowerCase()
+          .includes(targetValue.toLocaleLowerCase())
+      ) {
+        return ingredient.ingredient
+          .toLocaleLowerCase()
+          .includes(targetValue.toLocaleLowerCase());
+      }
+    });
+    if (result && result.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  containerRecipes.innerHTML = "";
+  displayRecipes(clickResult);
+}

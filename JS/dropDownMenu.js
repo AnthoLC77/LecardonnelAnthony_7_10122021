@@ -10,19 +10,31 @@ export default class DropDownButton {
     this.result = [];
 
     //Call Method
-    this.methodBoucleD(this.nameOfId, recipes);
-    this.methodTest();
+    this.createListeItemsInput(this.nameOfId, recipes);
+    // this.methodTest();
 
     if (nameOfId === "ingredient") {
-      this.searchElement(this.allIngredients, this.listeTag, this.nameOfId);
+      this.searchElementInputItems(
+        this.allIngredients,
+        this.listeTag,
+        this.nameOfId
+      );
     } else if (nameOfId === "appliance") {
-      this.searchElement(this.allAppliances, this.listeTag, this.nameOfId);
+      this.searchElementInputItems(
+        this.allAppliances,
+        this.listeTag,
+        this.nameOfId
+      );
     } else if (nameOfId === "ustensils") {
-      this.searchElement(this.allUstensils, this.listeTag, this.nameOfId);
+      this.searchElementInputItems(
+        this.allUstensils,
+        this.listeTag,
+        this.nameOfId
+      );
     }
   }
 
-  methodBoucleD(nameOfId, recipes) {
+  createListeItemsInput(nameOfId, recipes) {
     recipes.forEach((recipe) => {
       if (nameOfId === "ingredient") {
         recipe.ingredients.forEach((items) => {
@@ -72,7 +84,7 @@ export default class DropDownButton {
     });
   }
 
-  searchElement(array, parent, nameOfId) {
+  searchElementInputItems(array, parent, nameOfId) {
     let search = this.input;
     search.addEventListener("keyup", (e) => {
       let result = array.filter((item) =>
@@ -96,7 +108,7 @@ export default class DropDownButton {
   }
 
   //-------------------------------------------------------------------------
-
+  /*
   methodTest() {
     const testItems = document.querySelectorAll(".items");
 
@@ -115,7 +127,7 @@ export default class DropDownButton {
           if (listTrue.length == 1) {
             this.filterRecipeWithTags(liste, this.recipes);
           }
-        });*/
+        });
       });
     });
   }
@@ -188,7 +200,7 @@ export default class DropDownButton {
 
     console.log(this.result);
     //displayListeItemsInput(result);
-  }
+  }*/
 }
 
 //----------------------------------------------------

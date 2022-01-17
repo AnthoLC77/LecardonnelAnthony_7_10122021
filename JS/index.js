@@ -18,12 +18,7 @@ const listUlUstensils = document.querySelector(".liste_ustensils");
 
 //new SearchAll(listeUlIngredient, listeUlAppliance, listUlUstensils);
 
-let a = new DropDownButton(
-  "ingredient",
-  inputIngredient,
-  listeUlIngredient,
-  recipes
-);
+new DropDownButton("ingredient", inputIngredient, listeUlIngredient, recipes);
 new DropDownButton("appliance", inputAppliance, listeUlAppliance, recipes);
 new DropDownButton("ustensils", inputUstensils, listUlUstensils, recipes);
 
@@ -110,7 +105,6 @@ closeDropDownMenuClickOutside(inputUstensileActive, inputUstensileInactive);
 
 const searchInput = document.getElementById("searchBar");
 let containerRecipes = document.querySelector(".recettes_container");
-//let arrayOfItems = [...document.querySelectorAll(".items")];
 const listItems = document.querySelectorAll(".items");
 
 searchInput.addEventListener("input", (e) => {
@@ -140,14 +134,13 @@ searchInput.addEventListener("input", (e) => {
         return false;
       }
     });
-    // stockListe = [];
 
     console.log(resultFilter);
 
     containerRecipes.innerHTML = "";
     displayRecipes(resultFilter);
 
-    // Renvoie les listes filtre selon les recettes restantes
+    // Renvoie les listes items filtré selon les recettes restantes
 
     new DropDownButton(
       "ingredient",
@@ -196,44 +189,37 @@ function displayRecipes(recipes) {
   });
 }
 
-// Search And click Tags
-
 //--------------------------------------------------------------------------------
+// RECHERCHE CLICK LISTITEMS
 
 let result = [];
 let stockListe = [];
 
-/*
 listItems.forEach((item) => {
   item.addEventListener("click", triTags);
-});*/
+});
 
 function triTags(e) {
-  console.log(e.target);
   this.dataset.choisi = this.dataset.choisi == "true" ? "false" : "true";
-  //stockListe = [];
   displayTag();
 }
 
-function displayTag() {
+function displayTag(e) {
   const listTrue = Array.from(
     document.querySelectorAll(".items[data-choisi='true']")
   );
 
   console.log(listTrue);
 
-  createTagsElement(listTrue);
+  createTagsByColor(listTrue);
 
-  // Filter selon le nom de tag séléctionné
+  // Filter selon le nombre de tag séléctionné
   listTrue.forEach((list) => {
     if (listTrue.length == 1) {
-      stockListe = [];
       filterRecipeWithTags(list, recipes);
     } else if (listTrue.length == 2) {
-      stockListe = [];
       filterRecipeWithTags(list, result);
     } else if (listTrue.length == 3) {
-      stockListe = [];
       filterRecipeWithTags(list, result);
     }
   });
@@ -242,11 +228,7 @@ function displayTag() {
   if (listTrue.length == 0) {
     containerRecipes.innerHTML = "";
     displayRecipes(recipes);
-    a.methodBoucleD("ingredient", recipes);
-    console.log(a);
-    // a.methodBoucleD("ingredient", recipes);
 
-    /*
     new DropDownButton(
       "ingredient",
       inputIngredient,
@@ -255,29 +237,7 @@ function displayTag() {
     );
 
     new DropDownButton("appliance", inputAppliance, listeUlAppliance, recipes);
-    new DropDownButton("ustensils", inputUstensils, listUlUstensils, recipes);*/
-
-    /*
-    arrayOfItems.forEach((item) => {
-      if (
-        item.className == "items items_ingredient affiche" ||
-        item.className == "items items_ustensils affiche" ||
-        item.className == "items items_appliance affiche"
-      ) {
-        item.classList.remove("affiche");
-      } else if (
-        item.className == "items items_ingredient none" ||
-        item.className == "items items_ustensils none" ||
-        item.className == "items items_appliance none"
-      ) {
-        item.classList.remove("none");
-      }
-    });*/
-
-    // stockListe = [];
-    //console.log(stockListe);
-
-    // Reset liste Input
+    new DropDownButton("ustensils", inputUstensils, listUlUstensils, recipes);
   }
 
   closingTagOnTheCross(listTrue);
@@ -285,7 +245,7 @@ function displayTag() {
 
 //-----------------------------------------------------------------------
 
-function createTagsElement(listTrue) {
+function createTagsByColor(listTrue) {
   document.getElementById("list_tags").innerHTML = listTrue
     .map((liste) => {
       if (liste.classList[1] == "items_ingredient") {
@@ -348,16 +308,13 @@ function filterRecipeWithTags(list, recettes) {
   });
 
   console.log(result);
-  //displayListeItemsInput(result);
-  listeUlIngredient.innerHTML = "";
 
   new DropDownButton("ingredient", inputIngredient, listeUlIngredient, result);
-  // new DropDownButton("appliance", inputAppliance, listeUlAppliance, result);
-  // new DropDownButton("ustensils", inputUstensils, listUlUstensils, result);
-  a.methodTest();
+  new DropDownButton("appliance", inputAppliance, listeUlAppliance, result);
+  new DropDownButton("ustensils", inputUstensils, listUlUstensils, result);
+
   containerRecipes.innerHTML = "";
   displayRecipes(result);
-  //  console.log(stockListe);
 }
 
 // FERME UN TAG ET RESET LA LISTE DES RECETTES
@@ -408,4 +365,26 @@ function displayListeItemsInput(result) {
       }
     });
   });
-}*/
+}
+
+/*
+    arrayOfItems.forEach((item) => {
+      if (
+        item.className == "items items_ingredient affiche" ||
+        item.className == "items items_ustensils affiche" ||
+        item.className == "items items_appliance affiche"
+      ) {
+        item.classList.remove("affiche");
+      } else if (
+        item.className == "items items_ingredient none" ||
+        item.className == "items items_ustensils none" ||
+        item.className == "items items_appliance none"
+      ) {
+        item.classList.remove("none");
+      }
+    });*/
+
+// stockListe = [];
+//console.log(stockListe);
+
+// Reset liste Input*/

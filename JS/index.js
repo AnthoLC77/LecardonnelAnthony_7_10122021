@@ -177,6 +177,16 @@ searchInput.addEventListener("input", (e) => {
   }
 });
 
+function resetListe() {
+  let liste = document.querySelectorAll(".items");
+
+  liste.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      console.log(e.target);
+    });
+  });
+}
+
 function displayRecipes(recipes) {
   recipes.forEach((recipe) => {
     new RecipesCard(

@@ -72,15 +72,26 @@ li {
   display: flex;
 }
 
-.list_tag_choisi {
+.tag_choisi {
   display: flex;
   align-items: center;
   padding: 15px 20px;
   border-radius: 5px;
   color: white;
-  background-color: #3282f7;
   margin-right: 20px;
   cursor: pointer;
+}
+
+.tag_ingredients {
+  background-color: #3282f7;
+}
+
+.tag_appliance {
+  background-color: #68d9a4;
+}
+
+.tag_ustensils {
+  background-color: #ed6454;
 }
 
 .fa-times-circle {
@@ -187,6 +198,7 @@ li {
 
 .second_input_ingredients {
   background-color: #3282f7;
+  margin-right: 20px;
 }
 
 .second_input_ingredients input {
@@ -200,6 +212,7 @@ li {
 .second_input_appareils {
   background-color: #68d9a4;
   max-width: 400px;
+  margin-right: 20px;
 }
 
 .second_input_appareils input {
@@ -254,6 +267,20 @@ li {
 .second_input li:hover {
   overflow: initial;
   white-space: initial;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.none {
+  display: none;
+}
+
+.affiche {
+  display: list-item;
+}
+
+.items[data-choisi="true"] {
+  display: none;
 }
 
 /************ MAIN RECETTES *******************/

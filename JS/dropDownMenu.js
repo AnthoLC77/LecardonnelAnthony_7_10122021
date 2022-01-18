@@ -35,6 +35,7 @@ export default class DropDownButton {
   }
 
   createListeItemsInput(nameOfId, recipes) {
+    this.allIngredients = [];
     recipes.forEach((recipe) => {
       if (nameOfId === "ingredient") {
         recipe.ingredients.forEach((items) => {

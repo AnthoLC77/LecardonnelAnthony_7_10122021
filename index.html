@@ -22,7 +22,7 @@
         <!--Search Bar-->
         <div id="search_all">
             <input type="text" name="searchBar" id="searchBar" size="38"
-             placeholder="Rechercher un ingrédient, un appareil, ustensiles ou une recette">
+             placeholder="Rechercher un ingrédient, un appareil, un ustensile ou une recette...">
             <i class="fas fa-search"></i>
         </div>
         <div id="list_tags">
@@ -59,7 +59,7 @@
             </div>
             <div id="drop_Down_Menu_3">
                 <div class="first_input first_input_ustensiles">
-                    <input type="search" name="UstensilesSearch" id="UstensilesSearch" placeholder="Ustensiles">
+                    <input type="search" name="UstensilesSearch" id="UstensilesSearch" class="input_ustensils_inactive" placeholder="Ustensiles">
                     <i class="fas fa-chevron-down arrow arrow_down3"></i>
                 </div>
             </div>
@@ -76,9 +76,9 @@
             <!--Inject via index.js-->
         </main>
 
-        <div class="test">
+        <p style="display: none;" class="error_search">Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson »etc. </p>
 
-        </div>
+        
     </div>
     <script src="JS/index.js" type="module"></script>
 </body>

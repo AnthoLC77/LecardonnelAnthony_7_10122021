@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=IBM+Plex+Serif:ital,wght@1,500&family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Les petits plats</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a class="heading" href="index.html">
+                <img class="heading_icones" src="icones/Vector.png" alt="Toque de chef">
+                <h1 class="heading_title">Les petits Plats</h1>
+            </a>
+        </header>
+        <!--Search Bar-->
+        <div id="search_all">
+            <input type="text" name="searchBar" id="searchBar" size="38"
+             placeholder="Rechercher un ingrédient, un appareil, un ustensile ou une recette...">
+            <i class="fas fa-search"></i>
+        </div>
+        <div id="list_tags">
+
+        </div>
+
+        <!--Drop_down_Menu-->
+        <div id="drop_down_menu">
+            <div id="drop_down_menu_1">
+                <div class="first_input  first_input_ingredients ">
+                    <input type="search" name="ingredientSearch" id="ingredientSearch" class="input_ingredient_inactive" placeholder="Ingrédients">
+                    <i class="fas fa-chevron-down arrow arrow_down1"></i>
+                </div>
+                <div id="second_input1" class="second_input second_input_ingredients">
+                    <input type="search" name="IngrédientsSearchDeux" id="ingrédientsSearchDeux" class="input_ingredient_active" placeholder="Recherche un ingrédient">
+                    <i class="fas fa-chevron-up arrow arrow_up1"></i>
+                    <ul class="liste_ingredients">
+                        <!--Inject via JS-->
+                    </ul>
+                </div>
+            </div>
+            <div id="drop_down_menu_2">
+                <div class="first_input first_input_appareils">
+                    <input type="search" name="appareilSearch" id="appareilSearch" class="input_appareil_inactive" placeholder="Appareils">
+                    <i class="fas fa-chevron-down arrow arrow_down2"></i>
+                </div>
+                <div id="second_input2" class="second_input second_input_appareils">
+                    <input type="search" name="IngrédientsSearchDeux" id="applianceSearchDeux" class="input_appareil_active" placeholder="Recherche un ingrédient">
+                    <i class="fas fa-chevron-up arrow arrow_up2"></i>
+                    <ul class="liste_appareils">
+                       <!--Inject via JS-->
+                    </ul>
+                </div>
+            </div>
+            <div id="drop_Down_Menu_3">
+                <div class="first_input first_input_ustensiles">
+                    <input type="search" name="UstensilesSearch" id="UstensilesSearch" class="input_ustensils_inactive" placeholder="Ustensiles">
+                    <i class="fas fa-chevron-down arrow arrow_down3"></i>
+                </div>
+            </div>
+            <div id="second_input3" class="second_input second_input_ustensiles">
+                <input type="search" name="IngrédientsSearchDeux" id="ustensilsSearchDeux" placeholder="Recherche un ingrédient">
+                <i class="fas fa-chevron-up arrow arrow_up3"></i>
+                <ul class="liste_ustensils">
+                    <!--Inject via JS-->
+                </ul>
+            </div>
+        </div>
+
+        <main class="recettes_container">
+            <!--Inject via index.js-->
+        </main>
+
+        <p style="display: none;" class="error_search">Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson »etc. </p>
+
+        
+    </div>
+    <script src="JS/index.js" type="module"></script>
+</body>
+</html>
+

@@ -10,32 +10,11 @@ export default class DropDownButton {
     this.result = [];
 
     //Call Method
-    this.testMethod(recipes);
+    this.sortEachElementInArray(recipes);
     this.pushElementInInput(nameOfId);
-    //  this.createListeItemsInput(this.nameOfId, recipes);
-    /*
-      if (nameOfId === "ingredient") {
-        this.searchElementInputItems(
-          this.allIngredients,
-          this.listeTag,
-          this.nameOfId
-        );
-      } else if (nameOfId === "appliance") {
-        this.searchElementInputItems(
-          this.allAppliances,
-          this.listeTag,
-          this.nameOfId
-        );
-      } else if (nameOfId === "ustensils") {
-        this.searchElementInputItems(
-          this.allUstensils,
-          this.listeTag,
-          this.nameOfId
-        );
-      }*/
   }
 
-  testMethod(rec) {
+  sortEachElementInArray(rec) {
     rec.forEach((recipe) => {
       recipe.ingredients.forEach((ingredient) => {
         this.allIngredients.push(ingredient.ingredient);
@@ -87,27 +66,6 @@ export default class DropDownButton {
   triAlphabetiques(array) {
     array.sort(function (a, b) {
       return a.localeCompare(b);
-    });
-  }
-
-  searchElementInputItems(array, nameOfId) {
-    let search = this.input;
-    search.addEventListener("input", (e) => {
-      let result = array.filter((item) =>
-        item.toLocaleLowerCase().includes(search.value.toLocaleLowerCase())
-      );
-
-      //this.createListeItemsInput(this.nameOfId, result);
-
-      //  console.log(result);
-      const items = document.querySelectorAll(".items_ingredient");
-      items.forEach((item) => {
-        if (result.includes(item.textContent)) {
-          item.style.display = "list-item";
-        } else {
-          item.style.display = "none";
-        }
-      });
     });
   }
 }

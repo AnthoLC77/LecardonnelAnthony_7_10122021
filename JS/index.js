@@ -143,7 +143,11 @@ function mainBarSearchFilter(ArrayRecipes) {
       resultFilter = Array.from(new Set(resultFilter));
       containerRecipes.innerHTML = "";
       displayRecipes(resultFilter);
+      tri(resultFilter);
+      showRemainingListItems(resultFilter);
     }
+
+    //Show or suppress the error message
 
     if (containerRecipes.children.length < 1) {
       document.querySelector(".error_search").style.display = "block";
@@ -177,9 +181,7 @@ function displayRecipes(recipes) {
   }
 }
 
-// RECHERCHE CLICK LISTITEMS
-
-//let resultClickItems = [];
+// RECHERCHE CLICK LIST ITEMS
 
 let resultSearchAndClick = [];
 
@@ -200,8 +202,6 @@ function VideInputText() {
   inputUstensils.value = "";
 }
 
-//filterItemsInput(inputIngredient, result);
-
 function filterRecipesOnClick() {
   const listTrue = Array.from(
     document.querySelectorAll(".items[data-choisi='true']")
@@ -210,7 +210,7 @@ function filterRecipesOnClick() {
   createTagsByColor(listTrue);
   triSearchBarAndListeTags(listTrue, resultFilter);
 
-  // Filter selon le nombre de tag séléctionné
+  // filter according to the number of selected tags
   listTrue.forEach((liste) => {
     if (listTrue.length == 1 && searchInput.value.length < 3) {
       filterRecipeWithTags(liste, recipes);
@@ -224,8 +224,6 @@ function filterRecipesOnClick() {
       filterRecipeWithTags(liste, resultSearchAndClick);
     }
   });
-
-  // Si aucun tag n'est séléctionné && q
 
   if (listTrue.length == 0 && searchInput.value.length < 3) {
     containerRecipes.innerHTML = "";
@@ -245,7 +243,7 @@ function filterRecipesOnClick() {
 
 //-----------------------------------------------------------------------
 
-// Permet d'afficher les list items disponible en fonction de la recherche par click ou sur la barre principal
+// Allows you to display the list items available according to the search by click or on the main bar
 
 function triSearchBarAndListeTags(listeTrue, resultFilter) {
   listeTrue.forEach((liste) => {
@@ -386,7 +384,7 @@ function closingTagOnTheCross(listeTrue) {
   }
 }
 
-// Recherche input Ingredients, Appareils, Ustensils
+// Advanced Input Search (Ingredient, appliance, ustensils)
 
 let listeItemsIngredient = document.querySelectorAll(".items_ingredient");
 let listeItemsAppliance = document.querySelectorAll(".items_appliance");

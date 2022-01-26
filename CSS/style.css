@@ -121,8 +121,6 @@ li {
   display: flex;
   position: absolute;
   margin-top: 20px;
-  /*gap: 15px;*/
-  width: 100%;
 }
 
 #drop_down_menu_1 {
@@ -426,6 +424,7 @@ h3 {
     position: initial;
     width: 90%;
     margin-right: 0;
+    gap: 15px;
   }
 
   #drop_down_menu_1,

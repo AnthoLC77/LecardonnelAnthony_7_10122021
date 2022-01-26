@@ -204,7 +204,7 @@ function filterRecipesOnClick() {
   createTagsByColor(listTrue);
   triSearchBarAndListeTags(listTrue, resultFilter);
 
-  // Filter selon le nombre de tag séléctionné
+  // filter according to the number of selected tags
   listTrue.forEach((liste) => {
     if (listTrue.length == 1 && searchInput.value.length < 3) {
       filterRecipeWithTags(liste, recipes);

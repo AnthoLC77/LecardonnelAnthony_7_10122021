@@ -11,7 +11,9 @@ body {
 }
 
 .container {
-  padding: 40px 180px;
+  /* padding: 40px 180px;*/
+  width: 80%;
+  margin: 20px auto;
 }
 
 header {
@@ -45,8 +47,8 @@ li {
 
 #search_all .fa-search {
   position: relative;
-  top: 20px;
-  right: 50px;
+  top: 22px;
+  right: 60px;
   font-size: 28px;
   cursor: pointer;
 }
@@ -119,6 +121,7 @@ li {
   display: flex;
   position: absolute;
   margin-top: 20px;
+  /*gap: 15px;*/
 }
 
 #drop_down_menu_1 {
@@ -301,6 +304,7 @@ li {
   width: 30%;
   background-color: #e7e7e7;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .recette .img_grise {
@@ -338,7 +342,7 @@ h3 {
 }
 
 .recette_infos_timer i {
-  margin-right: 7px;
+  margin-right: 5px;
 }
 
 .recette_infos_ingredients {
@@ -362,10 +366,129 @@ h3 {
   width: 50%;
   text-align: justify;
   text-overflow: ellipsis;
-  text-overflow: "...";
   overflow: hidden;
 }
 
 .card_ustensils {
   display: none;
+}
+
+.error_search {
+  font-size: 1.3em;
+}
+
+@media screen and (max-width: 1100px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+
+  header {
+    width: 100%;
+  }
+
+  header h1 {
+    font-size: 1em;
+  }
+
+  #search_all {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin: 17px 0px;
+    text-align: center;
+  }
+
+  #searchBar {
+    width: 100%;
+    height: 60px;
+    font-size: 1.3em;
+    padding-right: 50px;
+  }
+
+  #searchBar:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+
+  .fa-search::before {
+    position: absolute;
+    top: -5px;
+    left: 15px;
+  }
+
+  #drop_down_menu {
+    flex-direction: column;
+    align-items: center;
+    position: initial;
+    width: 90%;
+    margin-right: 0;
+    gap: 15px;
+  }
+
+  #drop_down_menu_1,
+  #drop_down_menu_2,
+  #drop_Down_Menu_3 {
+    width: 100%;
+  }
+
+  #ingredientSearch,
+  #appareilSearch,
+  #UstensilesSearch {
+    width: 100%;
+    height: 60px;
+    max-width: none;
+    font-size: 1.1em;
+  }
+
+  .first_input {
+    width: 100%;
+    position: relative;
+  }
+
+  .first_input .arrow {
+    position: absolute;
+    top: 23px;
+  }
+
+  .second_input {
+    max-width: none;
+    margin: 0;
+  }
+
+  .second_input ul {
+    width: 100%;
+    margin: 0;
+  }
+
+  .second_input li {
+    display: block;
+  }
+
+  .recettes_container {
+    flex-direction: column;
+    width: 90%;
+    padding-top: 40px;
+  }
+
+  .recette {
+    width: 100%;
+    height: auto;
+  }
+
+  .recette_infos_name {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recette_infos_name h2 {
+    max-width: none;
+    text-align: center;
+  }
+
+  .recette footer {
+    height: 220px;
+  }
 }

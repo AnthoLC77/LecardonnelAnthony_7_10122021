@@ -7,8 +7,7 @@ export default class RecipesCard {
     this.ingredients = ingredients;
 
     // Method Call
-    //this.method(this.recipes);
-    this.createElementDomDeux(
+    this.createRecipeContainer(
       this.recipes,
       this.name,
       this.time,
@@ -16,7 +15,7 @@ export default class RecipesCard {
       this.ingredients
     );
   }
-  createElementDomDeux(
+  createRecipeContainer(
     recipe,
     recipeName,
     recipeTime,

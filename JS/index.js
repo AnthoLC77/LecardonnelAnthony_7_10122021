@@ -1,5 +1,5 @@
 //--------------------------------------
-//import SearchAll from "./searchAll.js";
+
 import DropDownButton from "./dropDownMenu.js";
 import { recipes } from "./data.js";
 import RecipesCard from "./cardRecipes.js";
@@ -110,10 +110,6 @@ const listeTags = document.getElementById("list_tags");
 
 let resultFilter = [];
 
-if (listeTags.childElementCount == 0) {
-  console.log("yes");
-}
-
 searchInput.addEventListener("input", () => {
   if (listeTags.children[0]) {
     mainBarSearchFilter(resultSearchAndClick);
@@ -123,34 +119,19 @@ searchInput.addEventListener("input", () => {
 });
 
 function mainBarSearchFilter(arrayRecipes) {
+  const inputValue = searchInput.value.toLocaleLowerCase();
+
   if (searchInput.value.length > 2) {
     resultFilter = arrayRecipes.filter((recipe) => {
-      const inputValue = searchInput.value.toLocaleLowerCase();
-
       // FILTRE NAME, INGREDIENTS, DESCRIPTION
-
-      const filterAll = recipe.ingredients.filter((ingredient) => {
-        if (ingredient.ingredient.toLocaleLowerCase().includes(inputValue)) {
-          return ingredient.ingredient
-            .toLocaleLowerCase()
-            .includes(searchInput.value.toLocaleLowerCase());
-        } else if (recipe.name.toLocaleLowerCase().includes(inputValue)) {
-          return recipe.name.toLocaleLowerCase().includes(inputValue);
-        } else if (
-          recipe.description.toLocaleLowerCase().includes(inputValue)
-        ) {
-          return recipe.description.toLocaleLowerCase().includes(inputValue);
-        }
-      });
-
-      if (filterAll && filterAll.length > 0) {
-        return true;
-      } else {
-        return false;
-      }
+      return (
+        recipe.name.toLocaleLowerCase().includes(inputValue) ||
+        recipe.description.toLocaleLowerCase().includes(inputValue) ||
+        recipe.ingredients.some((ingredient) =>
+          ingredient.ingredient.toLocaleLowerCase().includes(inputValue)
+        )
+      );
     });
-    console.log(resultSearchAndClick);
-    console.log(resultFilter);
 
     containerRecipes.innerHTML = "";
     displayRecipes(resultFilter);
@@ -164,7 +145,6 @@ function mainBarSearchFilter(arrayRecipes) {
     } else if (containerRecipes.children.length >= 1) {
       document.querySelector(".error_search").style.display = "none";
     }
-    //--------------------------------------------------------------------
   } else if (searchInput.value.length < 3 && listeTags.children[0]) {
     containerRecipes.innerHTML = "";
     tri(resultSearchAndClick);
@@ -194,8 +174,6 @@ function displayRecipes(recipes) {
 
 //--------------------------------------------------------------------------------
 // RECHERCHE CLICK LISTITEMS
-
-//let resultClickItems = [];
 
 let resultSearchAndClick = [];
 
@@ -241,8 +219,6 @@ function filterRecipesOnClick() {
     }
   });
 
-  // Si aucun tag n'est séléctionné && q
-
   if (listTrue.length == 0 && searchInput.value.length < 3) {
     containerRecipes.innerHTML = "";
     displayRecipes(recipes);
@@ -261,7 +237,7 @@ function filterRecipesOnClick() {
 
 //-----------------------------------------------------------------------
 
-// Permet d'afficher les list items disponible en fonction de la recherche par click ou sur la barre principal
+// Allows you to display the list items available according to the search by click or on the main bar
 
 function triSearchBarAndListeTags(listeTrue, resultFilter) {
   listeTrue.forEach((liste) => {
@@ -346,8 +322,6 @@ function filterRecipeWithTags(list, recettes) {
     }
   });
 
-  console.log(resultSearchAndClick);
-
   showRemainingListItems(resultSearchAndClick);
   containerRecipes.innerHTML = "";
   displayRecipes(resultSearchAndClick);
@@ -382,7 +356,7 @@ function showRemainingListItems(result) {
   });
 }
 
-// FERME UN TAG ET RESET LA LISTE DES RECETTES
+// CLOSE TAG & RESET THE LIST OF RECIPES
 //
 
 function closingTagOnTheCross(listeTrue) {
@@ -403,7 +377,7 @@ function closingTagOnTheCross(listeTrue) {
   }
 }
 
-// Recherche input Ingredients, Appareils, Ustensils
+// Advanced Input Search (Ingredient, appliance, ustensils)
 
 let listeItemsIngredient = document.querySelectorAll(".items_ingredient");
 let listeItemsAppliance = document.querySelectorAll(".items_appliance");
